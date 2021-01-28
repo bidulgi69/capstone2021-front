@@ -3,3 +3,4 @@
 * NextJS
 * Apollo
 * Redux
+* TypeScript
