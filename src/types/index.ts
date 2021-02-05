@@ -3,6 +3,7 @@ export type User = {
     email: string
     name: string
     profile?: string
+    authority: string
 }
 
 export type City = {
@@ -14,4 +15,11 @@ export type City = {
 export type LoginType = {
     email: string
     password: string
+}
+
+export type SignUpType = {
+    email: string,
+    password: string,
+    name: string,
+    profile?: number,
 }
