@@ -5,7 +5,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { ServerStyleSheet as StyledServerStyleSheets } from 'styled-components';
 // Utils
-import theme from '../utils/theme';
+import { theme } from '../utils/theme';
 
 class MyDocument extends Document {
     render() {
@@ -13,7 +13,6 @@ class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <meta name="theme-color" content={theme.palette.primary.main} />
-
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" />
                 </Head>
                 <body>

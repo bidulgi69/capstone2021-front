@@ -1,11 +1,11 @@
 import React from 'react';
 import { NextRouter, useRouter } from "next/router";
 import { Button, makeStyles, Tab, Tabs } from "@material-ui/core";
-import Cookies from 'js-cookie'
 import { GET_USER_DETAIL } from "../src/graphQL/quries";
-import { User } from "../src/types";
-import {useQuery} from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Loading, Error, UserAccordion } from "../src/components";
+import { useSelector } from 'react-redux';
+import {RootState} from "../src/modules";
 
 function a11yProps(index) {
     return {
@@ -32,6 +32,8 @@ const Home = ({ }: Props) => {
     const classes = useStyles();
     const [ value, setValue ] = React.useState<number>(0);
 
+    const toggle = useSelector((state: RootState) => state.ThemeReducer)
+    console.log('from redux', toggle);
     const { loading, error, data } = useQuery(GET_USER_DETAIL, { fetchPolicy: 'network-only' });
     if (loading) return <Loading />;
     if (error) return <Error msg={error.message} />;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NextRouter, useRouter } from "next/router";
 import { ListItemIcon, ListItemText, Menu, MenuItem, withStyles } from "@material-ui/core";
 import { AccountCircleRounded, FaceRounded, GitHub, MeetingRoomRounded, SupervisorAccountRounded } from "@material-ui/icons";
 import Cookies from 'js-cookie';
@@ -8,6 +9,7 @@ type Props = {
 }
 
 const UserAccordion = React.memo(({ authority }: Props) => {
+    const router: NextRouter = useRouter();
     const [ anchorEl, setAnchorEl ] = React.useState<null | Element>(null);
     const logout = () => {
         Cookies.remove('dove-token');
@@ -45,7 +47,7 @@ const UserAccordion = React.memo(({ authority }: Props) => {
                 </StyledMenuItem>
                 {
                     (authority && authority === 'ROLE_ADMIN') &&
-                        <StyledMenuItem onClick={() => logout()}>
+                        <StyledMenuItem onClick={() => router.push('/sudo').then()}>
                             <ListItemIcon>
                                 <SupervisorAccountRounded fontSize="small" />
                             </ListItemIcon>
