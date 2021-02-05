@@ -3,6 +3,7 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 // MUI Core
 import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheet as StyledServerStyleSheets } from 'styled-components';
 // Utils
 import theme from '../utils/theme';
 
@@ -51,22 +52,43 @@ MyDocument.getInitialProps = async (ctx) => {
 
     // Render app and page and get the context of the page with collected side effects.
     const sheets = new ServerStyleSheets();
+    const styledSheets = new StyledServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
+    try {
+        ctx.renderPage = () => originalRenderPage({
+            enhanceApp: App => props => styledSheets.collectStyles(sheets.collect(<App {...props} />))
+        })
+        const initialProps = await Document.getInitialProps(ctx)
+        return {
+            ...initialProps,
+            styles: (
+                <React.Fragment>
+                    {initialProps.styles}
+                    {sheets.getStyleElement()}
+                    {styledSheets.getStyleElement()}
+                </React.Fragment>
+            )
+        }
+    } finally {
+        styledSheets.seal(undefined)
+    }
 
-    const initialProps = await Document.getInitialProps(ctx);
-
-    return {
-        ...initialProps,
-        // Styles fragment is rendered after the app and page rendering finish.
-        styles: [
-            ...React.Children.toArray(initialProps.styles),
-            sheets.getStyleElement(),
-        ],
-    };
+    // when using material-ui only
+    // ctx.renderPage = () => originalRenderPage({
+    //     enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+    // });
+    //
+    // const initialProps = await Document.getInitialProps(ctx);
+    //
+    // return {
+    //     ...initialProps,
+    //     // Styles fragment is rendered after the app and page rendering finish.
+    //     styles: [
+    //         ...React.Children.toArray(initialProps.styles),
+    //         sheets.getStyleElement(),
+    //     ],
+    // };
 };
 
 export default MyDocument;
