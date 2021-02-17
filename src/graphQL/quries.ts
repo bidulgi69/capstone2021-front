@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { Long } from "../types/scalar";
 
 export const GET_DATA = gql`
     query allCities {
@@ -32,6 +31,15 @@ export const GET_USER_DETAIL = gql`
     }
 `
 
+export const GET_CATEGORIES = gql`
+    query categories {
+        categories {
+            id
+            name
+        }
+    }
+`
+
 export const POST_LOGIN = gql`
     query login($id: String!, $password: String!) {
         login(id: $id, password: $password) {
@@ -44,5 +52,11 @@ export const POST_LOGIN = gql`
 export const POST_SIGN = gql`
     mutation sign($id: String!, $password: String!, $name: String!) {
         sign(id: $id, password: $password, name: $name)
+    }
+`
+
+export const POST_CREATE_CATEGORY = gql`
+    mutation createCategory($title: String!) {
+        createCategory(title: $title)
     }
 `

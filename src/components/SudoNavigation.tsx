@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider } from "@material-ui/core";
-import { SportsEsportsRounded, GroupRounded, Reddit } from '@material-ui/icons';
+import { SportsEsportsRounded, GroupRounded, Reddit, CategoryRounded} from '@material-ui/icons';
 import styled from 'styled-components'
 
 const Menu = styled.div`
@@ -23,7 +23,6 @@ const MenuShell = styled.div`
 const MenuTitle = styled.span`
     font-size: 18pt;
     font-weight: bold;
-    color: #000;
     font-family: sans-serif;
     padding-left: 16pt;
 `
@@ -57,6 +56,16 @@ const SudoNavigation: React.FunctionComponent<Props> = ({ modifyTab }) => {
                         </MenuTitle>
                     </MenuShell>
                 </Menu>
+                <Divider variant={'middle'} />
+                <Menu onClick={() => modifyTab(2) }>
+                    <MenuShell>
+                        <CategoryRounded color={'primary'} style={{ fontSize: '24pt' }} />
+                        <MenuTitle>
+                            카테고리 관리
+                        </MenuTitle>
+                    </MenuShell>
+                </Menu>
+                <Divider variant={'middle'} />
             </div>
         </div>
     )

@@ -23,3 +23,20 @@ export type SignUpType = {
     name: string,
     profile?: number,
 }
+
+export type Category = {
+    id: number,
+    name: string,
+}
+
+export type CategoryWithCont = {
+    id: number,
+    name: string,
+    contents: Content[]
+}
+
+export type Content = {
+    id: number,
+    category: Category[],
+    title: string
+}

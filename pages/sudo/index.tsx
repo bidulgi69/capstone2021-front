@@ -2,29 +2,33 @@ import React from 'react';
 import { Divider } from "@material-ui/core";
 import styled from 'styled-components';
 import { SudoNavigation } from "../../src/components";
+import { CategoryManagement } from "../../src/container";
+import {NextRouter, useRouter} from "next/router";
 
 const TabTitle = styled.span`
     font-family: sans-serif;
     font-size: 32pt;
     font-weight: bold;
-    color: #000;
+    margin-bottom: 24pt;
 `
 
 const Sudo = () => {
-    const [ tabIdx, setTabIdx ] = React.useState<number>(0);
+    const router: NextRouter = useRouter();
+    const current: string | string[] | undefined = router.query?.tb;
 
     const modifyTab = (selected: number) => {
-        if (tabIdx === selected) return;
-        else setTabIdx(selected);
+        const current: string | string[] | undefined = router.query?.tb;
+        if (current === String(selected)) return;
+        else router.push('/sudo?tb=' + selected).then();
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', height: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
             <SudoNavigation modifyTab={modifyTab} />
             <Divider orientation={'vertical'} flexItem />
-            <div style={{ width: 'calc(100% - 200pt)', marginTop: '100pt', paddingLeft: '16pt' }}>
+            <div style={{ width: 'calc(100% - 200pt)', marginTop: '100pt', paddingLeft: '16pt', paddingRight: '16pt' }}>
                 {
-                    tabIdx === 0 &&
+                    current === "0" &&
                         <div style={{ width: '100%', height: 'calc(100vh - 100pt)', backgroundColor: 'green'}}>
                             <TabTitle>
                                 컨텐츠 관리
@@ -32,12 +36,21 @@ const Sudo = () => {
                         </div>
                 }
                 {
-                    tabIdx === 1 &&
+                    current === "1" &&
                         <div style={{ width: '100%', height: 'calc(100vh - 100pt)', backgroundColor: 'skyblue'}}>
                             <TabTitle>
                                 사용자 관리
                             </TabTitle>
                         </div>
+                }
+                {
+                    current === "2" &&
+                    <div style={{ width: '100%', height: 'calc(100vh - 100pt)', display: 'flex', flexDirection: 'column' }}>
+                        <TabTitle>
+                            카테고리 관리
+                        </TabTitle>
+                        <CategoryManagement />
+                    </div>
                 }
             </div>
         </div>

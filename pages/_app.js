@@ -11,12 +11,20 @@ import { global as GlobalStyles } from '../utils/global';
 // Redux
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { applyMiddleware, createStore } from 'redux';
-import {Provider, useSelector} from 'react-redux';
+import { Provider } from 'react-redux';
 import reducer from "../src/modules";
+import Cookies from 'js-cookie';
+
 const store = createStore(reducer, composeWithDevTools(applyMiddleware()))
 
 const App = ({ Component, pageProps, apollo }) => {
-    const [ toggle, setToggle ] = React.useState(false);
+    const [ toggle, setToggle ] = React.useState(Cookies.get('dove-dark-mode'));
+    const toggleTheme = () => {
+        const toggled = !toggle;
+        setToggle(toggled)
+        Cookies.set('dove-dark-mode', toggled);
+    }
+
     return (
         <Provider store={store}>
             <ApolloProvider client={apollo}>
@@ -26,10 +34,10 @@ const App = ({ Component, pageProps, apollo }) => {
                 </Head>
                 <MaterialUiThemeProvider theme={theme}>
                     <StyledThemeProvider theme={toggle ? darkTheme : lightTheme}>
-                        <button style={{ width: '50pt', height: '20pt', border: '0px solid #000', borderRadius: '12pt', backgroundColor: '#FFE94A' }}
-                            onClick={() => setToggle(!toggle)}>
+                        <button style={{ width: '80pt', height: '30pt', border: '0px solid #000', borderRadius: '12pt', backgroundColor: '#FFE94A' }}
+                            onClick={() => toggleTheme()}>
                             <span style={{ color: '#FFF', fontWeight: 'bold', fontSize: '14px' }}>
-                                toggle
+                                {!toggle ? 'dark mode' : 'light mode'}
                             </span>
                         </button>
                         <GlobalStyles />
