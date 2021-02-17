@@ -6,7 +6,7 @@ import Notiflix from 'notiflix';
 import { Loading, Error, CategoryTabs } from '../components';
 import { RootState } from "../modules";
 import { CrudCategoriesContainer } from "./belongings";
-import {modifyCategories} from "../reducers/CategoryReducer";
+import {modifyCategories, storeRefetchApi} from "../reducers/CategoryReducer";
 
 type Props = {
 }
@@ -17,6 +17,10 @@ const CategoryManagementContainer = ({  }: Props) => {
 
     const [ currentIdx, setCurrentIdx ] = React.useState<number>(0);
     const [ createCategory ] = useMutation(POST_CREATE_CATEGORY, { awaitRefetchQueries: true });
+
+    React.useEffect(() => {
+        dispatch(storeRefetchApi(refetch));
+    }, [])
 
     const { loading, error, refetch } = useQuery(GET_CATEGORIES,
         { onCompleted: response => dispatch(modifyCategories(response.categories)), fetchPolicy: 'network-only' });

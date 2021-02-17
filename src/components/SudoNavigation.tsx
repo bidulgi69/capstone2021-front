@@ -31,7 +31,7 @@ type Props = {
     modifyTab: ( selected: number ) => void
 }
 
-const SudoNavigation: React.FunctionComponent<Props> = ({ modifyTab }) => {
+const SudoNavigation: React.FunctionComponent<Props> = React.memo(({ modifyTab }) => {
     return (
         <div style={{ width: '220pt' }}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -69,6 +69,6 @@ const SudoNavigation: React.FunctionComponent<Props> = ({ modifyTab }) => {
             </div>
         </div>
     )
-};
+});
 
 export default SudoNavigation;

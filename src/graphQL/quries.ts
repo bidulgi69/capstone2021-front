@@ -1,15 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const GET_DATA = gql`
-    query allCities {
-        allCities {
-            id
-            name
-            population
-        }
-    }
-`;
-
 export const GET_USERS = gql`
     query allUsers {
         allUsers {
@@ -59,4 +49,16 @@ export const POST_CREATE_CATEGORY = gql`
     mutation createCategory($title: String!) {
         createCategory(title: $title)
     }
+`
+
+export const PUT_UPDATE_CATEGORY = gql`
+    mutation updateCategory($id: Int!, $title: String!) {
+        updateCategory(id: $id, title: $title)
+    }   
+`
+
+export const DELETE_REMOVE_CATEGORY = gql`
+    mutation deleteCategory($id: Int!) {
+        deleteCategory(id: $id)
+    }   
 `

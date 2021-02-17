@@ -14,7 +14,7 @@ const Tab = styled.div`
     height: 40pt;
     borderRadius: 20pt;
     &: hover {
-        background-color: green;
+        background-color: #87bdd8;
         color: #FFF;
     }
     border-bottom: ${props => props.selected ? "4pt solid #FFE94A" : "0px solid #000"}
