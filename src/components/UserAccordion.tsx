@@ -18,7 +18,7 @@ const UserAccordion = React.memo(({ authority }: Props) => {
 
     return (
         <div>
-            <AccountCircleRounded style={{ cursor: 'pointer', fontSize: '50pt' }}
+            <AccountCircleRounded style={{ cursor: 'pointer', fontSize: '50pt' }} color={Cookies.get('dove-dark-mode') === 'true' ? 'primary' : 'disabled'}
                                   onClick={(e) => setAnchorEl(e.currentTarget)} />
             <StyledMenu
                 id="customized-menu"
@@ -37,7 +37,7 @@ const UserAccordion = React.memo(({ authority }: Props) => {
                     <ListItemIcon>
                         <GitHub fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="Git Lab" />
+                    <ListItemText primary="Contact us" />
                 </StyledMenuItem>
                 <StyledMenuItem onClick={() => logout()}>
                     <ListItemIcon>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider } from "@material-ui/core";
-import { SportsEsportsRounded, GroupRounded, Reddit, CategoryRounded} from '@material-ui/icons';
+import { SportsEsportsRounded, GroupRounded, Reddit, CategoryRounded, HomeRounded } from '@material-ui/icons';
 import styled from 'styled-components'
 
 const Menu = styled.div`
@@ -29,9 +29,10 @@ const MenuTitle = styled.span`
 
 type Props = {
     modifyTab: ( selected: number ) => void
+    goBack: () => void
 }
 
-const SudoNavigation: React.FunctionComponent<Props> = React.memo(({ modifyTab }) => {
+const SudoNavigation: React.FunctionComponent<Props> = React.memo(({ modifyTab, goBack }) => {
     return (
         <div style={{ width: '220pt' }}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -66,6 +67,11 @@ const SudoNavigation: React.FunctionComponent<Props> = React.memo(({ modifyTab }
                     </MenuShell>
                 </Menu>
                 <Divider variant={'middle'} />
+                <Menu onClick={() => goBack()}>
+                    <MenuShell>
+                        <HomeRounded color={'primary'} style={{ fontSize: '18pt' }} />
+                    </MenuShell>
+                </Menu>
             </div>
         </div>
     )

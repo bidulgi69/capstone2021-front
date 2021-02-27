@@ -13,13 +13,18 @@ type InputProps = {
     height: string,
     value: string,
     onChangeValue: (changed: string) => void
+    placeholder?: string
+    onBlur?: () => void
 }
 
-const TextInput: React.FunctionComponent<InputProps> = ({ type, width, height, value, onChangeValue }) => {
+const TextInput: React.FunctionComponent<InputProps> = ({ type, width, height, value, onChangeValue,
+                                                            placeholder, onBlur }) => {
     return (
         <Div>
             <input type={type ? type : ''} style={{ width, height, border: '1px solid gray', borderRadius: '2pt', paddingLeft: '12pt' }}
-                   value={value} onChange={(e) => onChangeValue(e.target.value)} />
+                   value={value} onChange={(e) => onChangeValue(e.target.value)} placeholder={placeholder ? placeholder : ''}
+                   onBlur={onBlur ? onBlur : () => { }}
+            />
         </Div>
     );
 }

@@ -34,10 +34,11 @@ const App = ({ Component, pageProps, apollo }) => {
                 </Head>
                 <MaterialUiThemeProvider theme={theme}>
                     <StyledThemeProvider theme={toggle ? darkTheme : lightTheme}>
-                        <button style={{ width: '80pt', height: '30pt', border: '0px solid #000', borderRadius: '12pt', backgroundColor: '#FFE94A' }}
+                        <button style={{ position: 'absolute', right: 0, top: 0, zIndex: 10, cursor: 'pointer',
+                            width: '60pt', height: '20pt', border: '0px solid #000', borderRadius: '12pt', backgroundColor: '#FFE94A' }}
                             onClick={() => toggleTheme()}>
-                            <span style={{ color: '#FFF', fontWeight: 'bold', fontSize: '14px' }}>
-                                {!toggle ? 'dark mode' : 'light mode'}
+                            <span style={{ color: toggle ? '#FFF' : '#000', fontWeight: 'bold', fontSize: '11px' }}>
+                                TOGGLE!
                             </span>
                         </button>
                         <GlobalStyles />

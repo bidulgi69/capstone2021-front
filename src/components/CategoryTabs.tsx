@@ -1,37 +1,6 @@
 import React from 'react';
-import {useQuery} from "@apollo/client";
-import {GET_CATEGORIES} from "../graphQL/quries";
-import Loading from "./Loading";
-import Error from "./Error";
-import {Category} from "../types";
-import styled from 'styled-components';
-import {Box, List} from "@material-ui/core";
-
-const Tab = styled.div`
-    display: inline-block;
-    cursor: pointer;
-    width: 120pt;
-    height: 40pt;
-    borderRadius: 20pt;
-    &: hover {
-        background-color: #87bdd8;
-        color: #FFF;
-    }
-    border-bottom: ${props => props.selected ? "4pt solid #FFE94A" : "0px solid #000"}
-`
-
-const TabTitleShell = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-`
-
-const TabTitle = styled.span`
-    font-weight: bold;
-    font-size: 12pt;
-    font-family: sans-serif;
-`
+import { Category } from "../types";
+import { Tab, TabTitleShell, TabTitle } from "./commonStyled";
 
 type Props = {
     categories: Category[],

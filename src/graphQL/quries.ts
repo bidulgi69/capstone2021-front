@@ -26,6 +26,20 @@ export const GET_CATEGORIES = gql`
         categories {
             id
             name
+            content {
+                id
+                title
+                ref
+            }
+        }
+    }
+`
+
+export const GET_TRANSLATE = gql`
+    query translate($q: String!, $idx: Int!) {
+        translate(q: $q, idx: $idx) {
+            translated
+            idx
         }
     }
 `
@@ -61,4 +75,28 @@ export const DELETE_REMOVE_CATEGORY = gql`
     mutation deleteCategory($id: Int!) {
         deleteCategory(id: $id)
     }   
+`
+
+export const POST_CREATE_CONTENT = gql`
+    mutation createContent($input: ContentInput!) {
+        createContent(input: $input) {
+            status
+            message
+        }
+    }   
+`
+
+export const GET_PARSE = gql`
+    query parse($captions: String!) {
+        parse(captions: $captions) {
+            sentences {
+                eng
+                kor
+            }
+            words {
+                eng
+                kor
+            }
+        }
+    }
 `

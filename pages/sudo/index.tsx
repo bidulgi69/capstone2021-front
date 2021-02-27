@@ -24,11 +24,11 @@ const Sudo = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-            <SudoNavigation modifyTab={modifyTab} />
+            <SudoNavigation modifyTab={modifyTab} goBack={() => router.push('/')}/>
             <Divider orientation={'vertical'} flexItem />
             <div style={{ width: 'calc(100% - 200pt)', marginTop: '100pt', paddingLeft: '16pt', paddingRight: '16pt' }}>
                 {
-                    current === "0" &&
+                    (current === "0" || current === undefined) &&
                         <div style={{ width: '100%', height: 'calc(100vh - 100pt)', backgroundColor: 'green'}}>
                             <TabTitle>
                                 컨텐츠 관리

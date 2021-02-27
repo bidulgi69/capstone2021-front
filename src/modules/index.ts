@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { ThemeReducer, CategoryReducer } from "../reducers";
+import { ThemeReducer, CategoryReducer, AppNavReducer, ContReducer } from "../reducers";
 
 const reducer = combineReducers({
-    ThemeReducer, CategoryReducer
+    ThemeReducer, CategoryReducer, AppNavReducer, ContReducer
 });
 export default reducer;
 export type RootState = ReturnType<typeof reducer>

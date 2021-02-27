@@ -40,3 +40,15 @@ export type Content = {
     category: Category[],
     title: string
 }
+
+export type Paragraph = {
+    id?: number
+    eng: string,
+    kor: string
+}
+
+export type ContFrame = {
+    ref: string,
+    title: string,
+    captions: string,
+}
